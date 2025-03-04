@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Management</title>
+    <link href="style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="head1">
+        <span class="leftText">CMS</span>
+        <div class="rightContent">
+            <div class="icons">
+                <img src="bell.png" alt="bell" class="bell">
+                <img src="icon1.png" alt="icon" class="icon1">
+            </div>
+            <span class="rightText">Name Surname</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Ліве бокове меню -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="https://www.instagram.com/">Dashboard</a></li>
+                <li><a href="#" id="students-link">Students</a></li>
+                <li><a href="https://steamcommunity.com/market/">Tasks</a></li>
+            </ul>
+        </aside>
+
+        <main class="content" id="students-table" style="display: none;">
+            <h1 class="page-title">Students</h1>
+            <i class="fa-solid fa-plus" id="add-student-btn"></i>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Checkbox</th>
+                        <th>Group</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Birthday</th>
+                        <th>Status</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody id="students-list">
+                    <tr>
+                        <td class="checkbox"><input type="checkbox"></td>
+                        <td>PZ-24</td>
+                        <td>Serhiy</td>
+                        <td>Non-binary</td>
+                        <td>03.08.2006</td>
+                        <td><p class="status1">s</p></td>
+                        <td><i class="fa-solid fa-xmark"></i> <i class="fa-solid fa-pencil"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- Модальне вікно -->
+    <div id="add-student-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Student</h2>
+            <label>Group:</label>
+            <select id="student-group">
+                <option value="PZ-24">PZ-24</option>
+                <option value="PZ-25">PZ-25</option>
+            </select>
+
+            <label>First name:</label>
+            <input type="text" id="student-firstname">
+
+            <label>Last name:</label>
+            <input type="text" id="student-lastname">
+
+            <label>Gender:</label>
+            <select id="student-gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Non-binary">Non-binary</option>
+            </select>
+
+            <label>Birthday:</label>
+            <input type="date" id="student-birthday">
+
+            <div class="modal-buttons">
+                <button id="cancel-btn">Cancel</button>
+                <button id="create-btn">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
