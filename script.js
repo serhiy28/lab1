@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let studentGender = document.getElementById("student-gender");
     let studentBirthday = document.getElementById("student-birthday");
 
+
+
+    
+
+
+
     let editingRow = null; // Змінна для зберігання рядка, що редагується
 
     // Показати/сховати таблицю студентів
@@ -107,7 +113,17 @@ document.addEventListener("DOMContentLoaded", function () {
             studentFirstName.value = fullName[0];
             studentLastName.value = fullName[1] || ""; // Уникнення помилок, якщо немає прізвища
             studentGender.value = row.cells[3].textContent;
-            studentBirthday.value = row.cells[4].textContent.replace(/\./g, "-"); // Формат дати для input type="date"
+            let birthdayText = row.cells[4].textContent;
+
+            // Якщо формат дати DD.MM.YYYY (перевіряємо наявність крапки)
+            if (birthdayText.includes(".")) {
+                let birthParts = birthdayText.split(".");
+                studentBirthday.value = `${birthParts[2]}-${birthParts[1]}-${birthParts[0]}`;
+            } else {
+                // Якщо формат уже YYYY-MM-DD, просто використовуємо його
+                studentBirthday.value = birthdayText;
+            }
+            
 
             // Відкриваємо модальне вікно
             modal.style.display = "flex";
