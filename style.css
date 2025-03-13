@@ -44,7 +44,10 @@ body {
   }
   
   
-  
+  .content {
+    width: 100%;
+  }
+
   .container{
     display: flex;
   }
@@ -78,19 +81,20 @@ body {
     font-weight: bold;
   }
   
-  .status1 {
+   .status1 {
     background-color: gray;
-    color: gray;
-    border: gray;
-    border-radius: 100%;
+    width: 10px; 
+    height: 10px;
+     border-radius: 50%; 
+     display: inline-block;
   }
 
-  .status2 {
+  /* .status2 {
     background-color: green;
     color: green;
     border: green;
     border-radius: 100%;
-  }
+  }  */
   
   table{
     width: 100%;
@@ -281,37 +285,39 @@ body {
 
 @media (max-width: 1024px) {
   .head1 {
-      flex-direction: column;
-      text-align: center;
       padding: 10px;
       height: auto;
   }
-
   .rightContent {
       margin-top: 10px;
       justify-content: center;
   }
 
   .content {
-      flex-direction: column;
-      align-items: center;
+    width: 100%;
   }
 
   .container {
-      margin-left: 5%;
-      width: 80%;
+      margin-left: 0;
+      width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .head1 {
-    flex-direction: column;
-    text-align: center;
-  
+    padding: 10px;
+ height: auto;  
+}
+.leftText, .rightText {
+  font-size: 1.2rem;
+}
+
+.bell, .icon1 {
+  width: 25px;
+  height: 25px;
 }
 
 .rightContent {
-   
     justify-content: center;
 }
 
@@ -325,12 +331,33 @@ body {
   flex-direction: column;
   text-align: center;
 }
-
-table {
-      width: 100%;
-      overflow-x: auto;
+.sidebar {
+  width: 100%;
+  height: 20%;
+  text-align: center;
+  padding: 15px 0;
 }
 
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.sidebar ul li {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+table {
+  font-size: 0.7rem;
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+  overflow-x: auto;
+}
   .add-student-btn {
       margin-left: auto;
       margin-right: auto;
@@ -341,28 +368,53 @@ table {
 @media (max-width: 480px) {
   .head1 {
     padding: 5px;
+    height: auto;
   
 }
 .leftText {
   font-size: 1.2rem;
 }
 .bell, .icon1 {
-  width: 30px;
-      height: 30px;
+      width: 15px;
+      height: 15px;
+      
 }
 
 .container {
   margin-left: 0;
-      width: 100%;
-      flex-direction: column;
-      text-align: center;
+ width: 100%;
+  flex-direction: column;
+  text-align: center;
+    
+}
+
+.sidebar {
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.sidebar ul li {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 table {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .addStudentsButton {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
 }
 }

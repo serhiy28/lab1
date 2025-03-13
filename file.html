@@ -54,7 +54,8 @@
                         <td>Serhiy</td>
                         <td>Non-binary</td>
                         <td>03.08.2006</td>
-                        <td><p class="status1">s</p></td>
+                        <td><span class="status1"></span></td>
+                 
                         <td><i class="fa-solid fa-xmark"></i> <i class="fa-solid fa-pencil edit-student"></i></td>
                     </tr>
                     <tr>
@@ -130,6 +131,13 @@
 
             <label>Birthday:</label>
             <input type="date" id="student-birthday">
+
+            <label>Status:</label>
+            <select id="student-status">
+                <option value="Offline">Offline</option>
+                <option value="Online">Online</option>
+            </select>
+            
 
             <div class="modal-buttons">
                 <button id="cancel-btn">Cancel</button>
