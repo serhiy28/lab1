@@ -1,17 +1,24 @@
 
-body {
-    background-color: white;
+ * {
+    margin: 0;
   }
-  
+  body {
+    background-color: white;
+    overflow-x: hidden;
+    width: 99%;
+  }
+ 
   .head1 {
     font-size: 30px;
     color: white;
     background-color: grey;
     padding: 10px;
     display: flex; 
-
+    width: 100%;
+    
     align-items: center; 
     justify-content: space-between;
+    height: 8vh;
   }
   
   .leftText {
@@ -19,8 +26,6 @@ body {
     font-size: 20px;
   }
   
-  
-
   .rightContent {
     display: flex; 
     align-items: center; 
@@ -37,6 +42,17 @@ body {
     height: 30px;
     margin-right: 10px;
   }
+  .bell:hover, #notification:active {
+    animation: shakeX 0.3s linear;
+  }
+  
+  @keyframes shakeX {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
 
   .rightText {
     font-size: 20px;
@@ -50,23 +66,27 @@ body {
 
   .container{
     display: flex;
+    width: 100%;
+    height: 84vh;
   }
   
   
   .sidebar {
     width: 200px;
     background-color: #f8f8f8;
-    padding: 20px;
-    height: 100vh;
+    padding: 20px 0 20px 0;
   }
   
   .sidebar ul {
     list-style: none;
+    width: 100%;
     padding: 0;
   }
   
   .sidebar ul li {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    
+    padding: 10px 10px 10px 10px;
   }
   
   .sidebar ul li a {
@@ -75,26 +95,57 @@ body {
     font-size: 16px;
     display: block;
   }
+  .sidebar ul li:hover {
+    background-color: rgb(196, 196, 196);
+  
+  }
   
   .page-title {
     font-size: 28px;
     font-weight: bold;
   }
-  
+  .rightbottom{
+    background-color: grey;
+    padding: 10px;
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .headUnd{
+    font-size: 20px;
+    color: white;
+    background-color: grey;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .email, .tel{
+    color: black;
+  }
+  .inst, .git {
+    color: black;
+  }
+
+  .email:hover, .tel:hover {
+    color: blue;
+  }
+  .inst:hover, .git:hover {
+    color: blue;
+  }
+
    .status1 {
     background-color: gray;
     width: 10px; 
     height: 10px;
-     border-radius: 50%; 
-     display: inline-block;
+    border-radius: 50%; 
+    display: inline-block;
   }
 
-  /* .status2 {
-    background-color: green;
-    color: green;
-    border: green;
-    border-radius: 100%;
-  }  */
+  
   
   table{
     width: 100%;
@@ -284,11 +335,11 @@ body {
 
 
 @media (max-width: 1024px) {
-  .head1 {
+  .head1, .rightbottom {
       padding: 10px;
       height: auto;
   }
-  .rightContent {
+  .rightContent, .bottom-right-content {
       margin-top: 10px;
       justify-content: center;
   }
@@ -304,11 +355,11 @@ body {
 }
 
 @media (max-width: 768px) {
-  .head1 {
+  .head1, .rightbottom {
     padding: 10px;
- height: auto;  
+    height: auto;  
 }
-.leftText, .rightText {
+.leftText, .rightText, .headUnd {
   font-size: 1.2rem;
 }
 
@@ -366,12 +417,14 @@ table {
 }
 
 @media (max-width: 480px) {
-  .head1 {
+ 
+
+  .head1, .rightbottom {
     padding: 5px;
     height: auto;
   
 }
-.leftText {
+.leftText, .headUnd {
   font-size: 1.2rem;
 }
 .bell, .icon1 {
