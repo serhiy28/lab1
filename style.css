@@ -129,8 +129,7 @@
   }
   
   .sidebar ul li {
-    margin-bottom: 10px;
-    
+   
     padding: 10px 10px 10px 10px;
   }
   
@@ -195,10 +194,7 @@
 }
 .status1[data-status="Offline"] {
     background-color: gray;
-}
-
-  
-  
+  }
   table{
     width: 100%;
     border-collapse: collapse;
@@ -214,19 +210,13 @@
     padding: 8px;
     text-align: center;
   }
-  
-  
+
    .fa-plus {
     margin: 10px;
-  text-align: right;
+    text-align: right;
   }
   
-    .class1{
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      text-align: left;
-      color: aqua;
-    }
-  
+
     #add-student-btn {
       width: 15px;
       border: 1px solid black;

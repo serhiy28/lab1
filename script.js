@@ -14,9 +14,79 @@ document.addEventListener("DOMContentLoaded", function () {
     let studentBirthday = document.getElementById("student-birthday");
     let studentStatus = document.getElementById("student-status");
 
+    let editingRow = null;
 
+    // Initial students array
+    const initialStudents = [
+        {
+            group: "PZ-24",
+            firstName: "Serhiy",
+            lastName: "Matrokhin",
+            gender: "Non-binary",
+            birthday: "2006-08-03", // Using ISO format (YYYY-MM-DD) for consistency
+            status: "Offline"
+        },
+        {
+            group: "PZ-25",
+            firstName: "Anna",
+            lastName: "Kovalenko",
+            gender: "Female",
+            birthday: "2005-04-15",
+            status: "Online"
+        },
+        {
+            group: "PZ-24",
+            firstName: "Ivan",
+            lastName: "Petrenko",
+            gender: "Male",
+            birthday: "2006-11-22",
+            status: "Offline"
+        },
+        {
+            group: "PZ-24",
+            firstName: "Ivan",
+            lastName: "Petrenko",
+            gender: "Male",
+            birthday: "2006-11-22",
+            status: "Offline"
+        }
+    ];
 
-    let editingRow = null; // Змінна для зберігання рядка, що редагується
+    // Function to create a table row from student data
+    function createStudentRow(student) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td class="checkbox"><input type="checkbox"></td>
+            <td>${student.group}</td>
+            <td>${student.firstName} ${student.lastName}</td>
+            <td>${student.gender}</td>
+            <td>${formatDate(student.birthday)}</td>
+            <td><span class="status1" data-status="${student.status}"></span></td>
+            <td>
+                <i class="fa-solid fa-xmark delete-student"></i>
+                <i class="fa-solid fa-pencil edit-student"></i>
+            </td>
+        `;
+        return tr;
+    }
+
+    // Function to format date from YYYY-MM-DD to DD.MM.YYYY
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
+
+    // Initialize table with students
+    function initializeStudents() {
+        studentsList.innerHTML = ""; // Clear any existing content
+        initialStudents.forEach(student => {
+            const row = createStudentRow(student);
+            studentsList.appendChild(row);
+        });
+    }
 
     // Показати/сховати таблицю студентів
     studentsLink.addEventListener("click", function (event) {
@@ -27,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Відкрити модальне вікно для додавання нового студента
     addStudentBtn.addEventListener("click", function () {
         modal.style.display = "flex";
-        editingRow = null; // Скидаємо редагування
+        editingRow = null;
         clearModalFields();
     });
 
@@ -68,27 +138,23 @@ document.addEventListener("DOMContentLoaded", function () {
             editingRow.cells[1].textContent = group;
             editingRow.cells[2].textContent = `${firstName} ${lastName}`;
             editingRow.cells[3].textContent = gender;
-            editingRow.cells[4].textContent = birthday;
+            editingRow.cells[4].textContent = formatDate(birthday);
             editingRow.cells[5].innerHTML = `<span class="status1" data-status="${status}"></span>`;
         } else {
-            let newRow = document.createElement("tr");
-            newRow.innerHTML = `
-                <td class="checkbox"><input type="checkbox"></td>
-                <td>${group}</td>
-                <td>${firstName} ${lastName}</td>
-                <td>${gender}</td>
-                <td>${birthday}</td>
-                <td><span class="status1" data-status="${status}"></span></td>
-                <td>
-                    <i class="fa-solid fa-xmark delete-student"></i>
-                    <i class="fa-solid fa-pencil edit-student"></i>
-                </td>
-            `;
+            let newRow = createStudentRow({
+                group,
+                firstName,
+                lastName,
+                gender,
+                birthday,
+                status
+            });
             studentsList.appendChild(newRow);
         }
     
         modal.style.display = "none";
         editingRow = null;
+        window.refreshPagination();
     });
 
     // Обробка натискань на іконки видалення та редагування
@@ -98,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Видалення студента
         if (target.classList.contains("delete-student")) {
             target.closest("tr").remove();
+            window.refreshPagination();
         }
 
         // Редагування студента
@@ -111,7 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
             studentLastName.value = fullName[1] || "";
             studentGender.value = row.cells[3].textContent;
             let birthdayText = row.cells[4].textContent;
-            // Отримуємо статус із атрибута data-status
             let statusElement = row.cells[5].querySelector(".status1");
             studentStatus.value = statusElement.getAttribute("data-status") || "Offline";
         
@@ -125,4 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
             modal.style.display = "flex";
         }
     });
+
+    // Initialize the table with initial students
+    initializeStudents();
 });

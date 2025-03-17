@@ -17,18 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let totalPages = Math.ceil(students.length / studentsPerPage);
         if (page < 1) page = 1;
         if (page > totalPages) page = totalPages;
-
+    
         students.forEach((student, index) => {
-            student.classList.add("hidden"); // Спочатку зникають
-            setTimeout(() => {
-                student.style.display =
-                    index >= (page - 1) * studentsPerPage && index < page * studentsPerPage
-                        ? "table-row"
-                        : "none";
-                student.classList.remove("hidden"); // Потім плавно з’являються
-            }, 200);
+            student.style.display =
+                index >= (page - 1) * studentsPerPage && index < page * studentsPerPage
+                    ? "table-row"
+                    : "none";
         });
-
+    
         currentPage = page;
         updatePagination();
     }
@@ -36,54 +32,62 @@ document.addEventListener("DOMContentLoaded", function () {
     function updatePagination() {
         let students = getStudents();
         let totalPages = Math.ceil(students.length / studentsPerPage);
-
-        pageNumbersContainer.innerHTML = ""; // Очищуємо номери сторінок
-
+        let currentButtons = pageNumbersContainer.children.length;
+    
         if (students.length === 0) {
             emptyMessage.style.display = "block";
             prevPageBtn.style.display = "none";
             nextPageBtn.style.display = "none";
+            pageNumbersContainer.innerHTML = "";
         } else {
             emptyMessage.style.display = "none";
             prevPageBtn.style.display = "inline-block";
             nextPageBtn.style.display = "inline-block";
-
-            for (let i = 1; i <= totalPages; i++) {
-                let pageBtn = document.createElement("button");
-                pageBtn.textContent = i;
-                pageBtn.classList.add("page-btn");
-                if (i === currentPage) pageBtn.classList.add("active");
-
-                pageBtn.addEventListener("click", () => showPage(i));
-                pageNumbersContainer.appendChild(pageBtn);
+    
+            // Оновлюємо кнопки лише якщо кількість сторінок змінилася
+            if (currentButtons !== totalPages) {
+                pageNumbersContainer.innerHTML = ""; // Очищаємо лише при зміні кількості сторінок
+                for (let i = 1; i <= totalPages; i++) {
+                    let pageBtn = document.createElement("button");
+                    pageBtn.textContent = i;
+                    pageBtn.classList.add("page-btn");
+                    if (i === currentPage) pageBtn.classList.add("active");
+                    pageBtn.addEventListener("click", () => showPage(i));
+                    pageNumbersContainer.appendChild(pageBtn);
+                }
+            } else {
+                // Оновлюємо лише активний стан кнопок
+                Array.from(pageNumbersContainer.children).forEach((btn, index) => {
+                    btn.classList.toggle("active", index + 1 === currentPage);
+                });
             }
-
+    
             prevPageBtn.disabled = currentPage === 1;
             nextPageBtn.disabled = currentPage === totalPages;
         }
     }
 
-    function refreshPagination() {
+    window.refreshPagination = function() {
         let students = getStudents();
         let totalPages = Math.ceil(students.length / studentsPerPage);
-
+    
         if (currentPage > totalPages) {
             currentPage = totalPages;
         }
-        showPage(currentPage);
+        showPage(currentPage); // Виклик без затримки
     }
 
     // Оновлення пагінації після додавання студента
-    document.getElementById("add-student-btn").addEventListener("click", function () {
-        setTimeout(refreshPagination, 100); // Невелика затримка, щоб DOM оновився
-    });
+    // document.getElementById("add-student-btn").addEventListener("click", function () {
+    //     setTimeout(refreshPagination, 10); // Невелика затримка, щоб DOM оновився
+    // });
 
-    // Оновлення пагінації після видалення студента
-    studentsList.addEventListener("click", function (event) {
-        if (event.target.classList.contains("delete-btn")) {
-            setTimeout(refreshPagination, 100);
-        }
-    });
+    // // Оновлення пагінації після видалення студента
+    // studentsList.addEventListener("click", function (event) {
+    //     if (event.target.classList.contains("delete-btn")) {
+    //         setTimeout(refreshPagination, 10);
+    //     }
+    // });
 
     prevPageBtn.addEventListener("click", () => showPage(currentPage - 1));
     nextPageBtn.addEventListener("click", () => showPage(currentPage + 1));
