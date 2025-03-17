@@ -12,12 +12,30 @@
         <span class="leftText">CMS</span>
         <div class="rightContent">
             <div class="icons">
-                <img src="bell.png" alt="bell" class="bell">
-                <img src="icon1.png" alt="icon" class="icon1">
+                <!-- <img src="bell.png" alt="bell" class="bell"> -->
+                <i class="fa-solid fa-bell bell" ></i>
+                <!-- <img src="icon1.png" alt="icon" class="icon1"> -->
+                <i class="fa-solid fa-circle-user icon1"></i>
             </div>
             <span class="rightText">Name Surname</span>
         </div>
     </div>
+
+    <div id="bell-popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <p>Notifications will appear here</p>
+        </div>
+    </div>
+    
+    <!-- Popup for icon1 -->
+    <div id="icon1-popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <p>User options will appear here</p>
+        </div>
+    </div>
+
 
     <div class="container">
         <!-- Ліве бокове меню -->
@@ -30,6 +48,7 @@
         </aside>
 
         <main class="content" id="students-table" style="display: none;">
+            <br>
             <h1 class="page-title">Students</h1>
             <i class="fa-solid fa-plus" id="add-student-btn"></i>
             <p id="empty-message" class="empty-message">Список порожній</p>
@@ -53,9 +72,9 @@
                         <td>Serhiy</td>
                         <td>Non-binary</td>
                         <td>03.08.2006</td>
-                        <td><span class="status1"></span></td>
+                        <td><span class="status1" data-status="Offline"></span></td>
                  
-                        <td><i class="fa-solid fa-xmark"></i> <i class="fa-solid fa-pencil edit-student"></i></td>
+                        <td><i class="fa-solid fa-xmark delete-student"></i> <i class="fa-solid fa-pencil edit-student"></i></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -162,6 +181,7 @@
 
     <script src="script.js"></script>
     <script src="pagination.js"></script>
+    <script src="popup.js"></script>
 </body>
 
 </html>

@@ -58,24 +58,19 @@ document.addEventListener("DOMContentLoaded", function () {
         let gender = studentGender.value;
         let birthday = studentBirthday.value;
         let status = studentStatus.value;
-        
-
+    
         if (firstName === "" || lastName === "" || birthday === "") {
             alert("Будь ласка, заповніть усі поля.");
             return;
         }
-        let statusColor = status === "Online" ? "green" : "gray";
-        let statusCircle = `<span class="status-circle" style="background-color: ${statusColor}; width: 10px; height: 10px; border-radius: 50%; display: inline-block;"></span>`;
+    
         if (editingRow) {
-            // Оновлення існуючого студента
             editingRow.cells[1].textContent = group;
             editingRow.cells[2].textContent = `${firstName} ${lastName}`;
             editingRow.cells[3].textContent = gender;
             editingRow.cells[4].textContent = birthday;
-            // editingRow.cells[5].innerHTML = `${statusCircle} ${status}`;
-            editingRow.cells[5].innerHTML = `${statusCircle}`;
+            editingRow.cells[5].innerHTML = `<span class="status1" data-status="${status}"></span>`;
         } else {
-            // Додавання нового студента
             let newRow = document.createElement("tr");
             newRow.innerHTML = `
                 <td class="checkbox"><input type="checkbox"></td>
@@ -83,18 +78,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${firstName} ${lastName}</td>
                 <td>${gender}</td>
                 <td>${birthday}</td>
-                
-                 <td>${statusCircle}</td>
+                <td><span class="status1" data-status="${status}"></span></td>
                 <td>
                     <i class="fa-solid fa-xmark delete-student"></i>
                     <i class="fa-solid fa-pencil edit-student"></i>
                 </td>
             `;
             studentsList.appendChild(newRow);
-         }
-        // <td>${statusCircle} ${status}</td> 
+        }
+    
         modal.style.display = "none";
-        editingRow = null; // Скидання редагування після збереження
+        editingRow = null;
     });
 
     // Обробка натискань на іконки видалення та редагування
@@ -109,28 +103,25 @@ document.addEventListener("DOMContentLoaded", function () {
         // Редагування студента
         if (target.classList.contains("edit-student")) {
             let row = target.closest("tr");
-            editingRow = row; // Зберігаємо рядок для редагування
-
-            // Заповнюємо модальне вікно даними студента
+            editingRow = row;
+        
             studentGroup.value = row.cells[1].textContent;
             let fullName = row.cells[2].textContent.split(" ");
             studentFirstName.value = fullName[0];
-            studentLastName.value = fullName[1] || ""; // Уникнення помилок, якщо немає прізвища
+            studentLastName.value = fullName[1] || "";
             studentGender.value = row.cells[3].textContent;
             let birthdayText = row.cells[4].textContent;
-            studentStatus.value = row.cells[5].textContent.trim;
-
-            // Якщо формат дати DD.MM.YYYY (перевіряємо наявність крапки)
+            // Отримуємо статус із атрибута data-status
+            let statusElement = row.cells[5].querySelector(".status1");
+            studentStatus.value = statusElement.getAttribute("data-status") || "Offline";
+        
             if (birthdayText.includes(".")) {
                 let birthParts = birthdayText.split(".");
                 studentBirthday.value = `${birthParts[2]}-${birthParts[1]}-${birthParts[0]}`;
             } else {
-                // Якщо формат уже YYYY-MM-DD, просто використовуємо його
                 studentBirthday.value = birthdayText;
             }
-            
-
-            // Відкриваємо модальне вікно
+        
             modal.style.display = "flex";
         }
     });
