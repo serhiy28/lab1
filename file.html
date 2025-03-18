@@ -12,9 +12,9 @@
         <span class="leftText">CMS</span>
         <div class="rightContent">
             <div class="icons">
-                <!-- <img src="bell.png" alt="bell" class="bell"> -->
+               
                 <i class="fa-solid fa-bell bell" ></i>
-                <!-- <img src="icon1.png" alt="icon" class="icon1"> -->
+                
                 <i class="fa-solid fa-circle-user icon1"></i>
             </div>
             <span class="rightText">Name Surname</span>
@@ -41,9 +41,9 @@
         <!-- Ліве бокове меню -->
         <aside class="sidebar">
             <ul>
-                <li><a href="https://www.instagram.com/">Dashboard</a></li>
+                <li><a href="/dashboard.html">Dashboard</a></li>
                 <li><a href="#" id="students-link">Students</a></li>
-                <li><a href="https://steamcommunity.com/market/">Tasks</a></li>
+                <li><a href="/tasks.html">Tasks</a></li>
             </ul>
         </aside>
 
@@ -56,7 +56,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Checkbox</th>
+                        <th class="checkbox">Checkbox<br><input type="checkbox" id="select-all-checkbox"></th>
                         <th>Group</th>
                         <th>Name</th>
                         <th>Gender</th>
@@ -178,6 +178,33 @@
                 class="git"></i></a>
         </div>
     </div>
+
+
+   <!-- Модальне вікно для підтвердження видалення -->
+   <div id="delete-confirm-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-delete-confirm">×</span>
+        <h2>Confirm Deletion</h2>
+        <p id="delete-confirm-message">Are you sure you want to delete this student?</p>
+        <div class="modal-buttons">
+            <button id="cancel-delete-btn">Cancel</button>
+            <button id="confirm-delete-btn">Delete</button>
+        </div>
+    </div>
+</div>
+
+<!-- Модальне вікно для повідомлення про чекбокс -->
+<div id="checkbox-warning-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-checkbox-warning">×</span>
+        <h2>Warning</h2>
+        <p>Please select the student by checking the checkbox before deleting.</p>
+        <div class="modal-buttons">
+            <button id="close-warning-btn">OK</button>
+        </div>
+    </div>
+</div>
+
 
     <script src="script.js"></script>
     <script src="pagination.js"></script>

@@ -14,45 +14,29 @@ document.addEventListener("DOMContentLoaded", function () {
     let studentBirthday = document.getElementById("student-birthday");
     let studentStatus = document.getElementById("student-status");
 
+    // Елементи для модальних вікон видалення
+    let deleteConfirmModal = document.getElementById("delete-confirm-modal");
+    let deleteConfirmMessage = document.getElementById("delete-confirm-message");
+    let closeDeleteConfirm = document.querySelector(".close-delete-confirm");
+    let cancelDeleteBtn = document.getElementById("cancel-delete-btn");
+    let confirmDeleteBtn = document.getElementById("confirm-delete-btn");
+
+    let checkboxWarningModal = document.getElementById("checkbox-warning-modal");
+    let closeCheckboxWarning = document.querySelector(".close-checkbox-warning");
+    let closeWarningBtn = document.getElementById("close-warning-btn");
+
+    // Чекбокс у заголовку
+    let selectAllCheckbox = document.getElementById("select-all-checkbox");
+
     let editingRow = null;
 
-    // Initial students array
     const initialStudents = [
-        {
-            group: "PZ-24",
-            firstName: "Serhiy",
-            lastName: "Matrokhin",
-            gender: "Non-binary",
-            birthday: "2006-08-03", // Using ISO format (YYYY-MM-DD) for consistency
-            status: "Offline"
-        },
-        {
-            group: "PZ-25",
-            firstName: "Anna",
-            lastName: "Kovalenko",
-            gender: "Female",
-            birthday: "2005-04-15",
-            status: "Online"
-        },
-        {
-            group: "PZ-24",
-            firstName: "Ivan",
-            lastName: "Petrenko",
-            gender: "Male",
-            birthday: "2006-11-22",
-            status: "Offline"
-        },
-        {
-            group: "PZ-24",
-            firstName: "Ivan",
-            lastName: "Petrenko",
-            gender: "Male",
-            birthday: "2006-11-22",
-            status: "Offline"
-        }
+        { group: "PZ-24", firstName: "Serhiy", lastName: "Matrokhin", gender: "Non-binary", birthday: "2006-08-03", status: "Offline" },
+        { group: "PZ-25", firstName: "Anna", lastName: "Kovalenko", gender: "Female", birthday: "2005-04-15", status: "Online" },
+        { group: "PZ-24", firstName: "Ivan", lastName: "Petrenko", gender: "Male", birthday: "2006-11-22", status: "Offline" },
+        { group: "PZ-24", firstName: "Ivan", lastName: "Petrenko", gender: "Male", birthday: "2006-11-22", status: "Offline" }
     ];
 
-    // Function to create a table row from student data
     function createStudentRow(student) {
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -70,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return tr;
     }
 
-    // Function to format date from YYYY-MM-DD to DD.MM.YYYY
     function formatDate(dateString) {
         const date = new Date(dateString);
         const day = String(date.getDate()).padStart(2, '0');
@@ -79,29 +62,25 @@ document.addEventListener("DOMContentLoaded", function () {
         return `${day}.${month}.${year}`;
     }
 
-    // Initialize table with students
     function initializeStudents() {
-        studentsList.innerHTML = ""; // Clear any existing content
+        studentsList.innerHTML = "";
         initialStudents.forEach(student => {
             const row = createStudentRow(student);
             studentsList.appendChild(row);
         });
     }
 
-    // Показати/сховати таблицю студентів
     studentsLink.addEventListener("click", function (event) {
         event.preventDefault();
         studentsTable.style.display = studentsTable.style.display === "none" ? "block" : "none";
     });
 
-    // Відкрити модальне вікно для додавання нового студента
     addStudentBtn.addEventListener("click", function () {
         modal.style.display = "flex";
         editingRow = null;
         clearModalFields();
     });
 
-    // Закрити модальне вікно
     closeModal.addEventListener("click", closeModalFunc);
     cancelBtn.addEventListener("click", closeModalFunc);
 
@@ -110,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
         editingRow = null;
     }
 
-    // Очистити поля форми
     function clearModalFields() {
         studentGroup.value = "PZ-24";
         studentFirstName.value = "";
@@ -120,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
         studentStatus.value = "Offline";
     }
 
-    // Додати або оновити студента
     createBtn.addEventListener("click", function () {
         let group = studentGroup.value;
         let firstName = studentFirstName.value.trim();
@@ -128,12 +105,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let gender = studentGender.value;
         let birthday = studentBirthday.value;
         let status = studentStatus.value;
-    
+
         if (firstName === "" || lastName === "" || birthday === "") {
             alert("Будь ласка, заповніть усі поля.");
             return;
         }
-    
+
         if (editingRow) {
             editingRow.cells[1].textContent = group;
             editingRow.cells[2].textContent = `${firstName} ${lastName}`;
@@ -141,37 +118,47 @@ document.addEventListener("DOMContentLoaded", function () {
             editingRow.cells[4].textContent = formatDate(birthday);
             editingRow.cells[5].innerHTML = `<span class="status1" data-status="${status}"></span>`;
         } else {
-            let newRow = createStudentRow({
-                group,
-                firstName,
-                lastName,
-                gender,
-                birthday,
-                status
-            });
+            let newRow = createStudentRow({ group, firstName, lastName, gender, birthday, status });
             studentsList.appendChild(newRow);
         }
-    
+
         modal.style.display = "none";
         editingRow = null;
         window.refreshPagination();
     });
 
-    // Обробка натискань на іконки видалення та редагування
     studentsList.addEventListener("click", function (event) {
         let target = event.target;
 
-        // Видалення студента
         if (target.classList.contains("delete-student")) {
-            target.closest("tr").remove();
-            window.refreshPagination();
+            let row = target.closest("tr");
+            let checkbox = row.querySelector("input[type='checkbox']");
+
+            // Якщо чекбокс у цьому рядку неактивний, показуємо попередження
+            if (!checkbox.checked) {
+                checkboxWarningModal.style.display = "flex";
+                return;
+            }
+
+            // Отримуємо всі рядки з активними чекбоксами
+            let checkedRows = Array.from(studentsList.querySelectorAll("tr"))
+                .filter(row => row.querySelector("input[type='checkbox']").checked);
+
+            if (checkedRows.length > 0) {
+                // Оновлюємо повідомлення у модальному вікні
+                if (checkedRows.length === 1) {
+                    deleteConfirmMessage.textContent = "Are you sure you want to delete this student?";
+                } else {
+                    deleteConfirmMessage.textContent = `Are you sure you want to delete ${checkedRows.length} students?`;
+                }
+                deleteConfirmModal.style.display = "flex";
+            }
         }
 
-        // Редагування студента
         if (target.classList.contains("edit-student")) {
             let row = target.closest("tr");
             editingRow = row;
-        
+
             studentGroup.value = row.cells[1].textContent;
             let fullName = row.cells[2].textContent.split(" ");
             studentFirstName.value = fullName[0];
@@ -180,18 +167,53 @@ document.addEventListener("DOMContentLoaded", function () {
             let birthdayText = row.cells[4].textContent;
             let statusElement = row.cells[5].querySelector(".status1");
             studentStatus.value = statusElement.getAttribute("data-status") || "Offline";
-        
+
             if (birthdayText.includes(".")) {
                 let birthParts = birthdayText.split(".");
                 studentBirthday.value = `${birthParts[2]}-${birthParts[1]}-${birthParts[0]}`;
             } else {
                 studentBirthday.value = birthdayText;
             }
-        
+
             modal.style.display = "flex";
         }
     });
 
-    // Initialize the table with initial students
+    // Обробник для чекбокса у заголовку
+    selectAllCheckbox.addEventListener("change", function () {
+        let isChecked = selectAllCheckbox.checked;
+        let allCheckboxes = studentsList.querySelectorAll("input[type='checkbox']");
+
+        allCheckboxes.forEach(checkbox => {
+            checkbox.checked = isChecked;
+        });
+    });
+
+    // Закриття модального вікна підтвердження
+    closeDeleteConfirm.addEventListener("click", function () {
+        deleteConfirmModal.style.display = "none";
+    });
+    cancelDeleteBtn.addEventListener("click", function () {
+        deleteConfirmModal.style.display = "none";
+    });
+
+    // Підтвердження видалення всіх студентів із активними чекбоксами
+    confirmDeleteBtn.addEventListener("click", function () {
+        let checkedRows = Array.from(studentsList.querySelectorAll("tr"))
+            .filter(row => row.querySelector("input[type='checkbox']").checked);
+
+        checkedRows.forEach(row => row.remove());
+        deleteConfirmModal.style.display = "none";
+        window.refreshPagination();
+    });
+
+    // Закриття модального вікна попередження
+    closeCheckboxWarning.addEventListener("click", function () {
+        checkboxWarningModal.style.display = "none";
+    });
+    closeWarningBtn.addEventListener("click", function () {
+        checkboxWarningModal.style.display = "none";
+    });
+
     initializeStudents();
 });
