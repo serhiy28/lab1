@@ -36,11 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
         { group: "PZ-24", firstName: "Ivan", lastName: "Petrenko", gender: "Male", birthday: "2006-11-22", status: "Offline" },
         { group: "PZ-24", firstName: "Ivan", lastName: "Petrenko", gender: "Male", birthday: "2006-11-22", status: "Offline" }
     ];
-
+    let i = 0;
     function createStudentRow(student) {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td class="checkbox"><input type="checkbox"></td>
+            <td class="checkbox"><input type="checkbox" id = "select-all-checkbox${i}"><label for="select-all-checkbox${i}" style="visibility: hidden;">fd</label></td>
             <td>${student.group}</td>
             <td>${student.firstName} ${student.lastName}</td>
             <td>${student.gender}</td>
@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <i class="fa-solid fa-pencil edit-student"></i>
             </td>
         `;
+        i++;
         return tr;
     }
 

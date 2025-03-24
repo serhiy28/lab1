@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
+
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Put your description here.">
     <title>Student Management</title>
     <link href="style.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
@@ -56,7 +60,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="checkbox">Checkbox<br><input type="checkbox" id="select-all-checkbox"></th>
+                        
+                        <th class="checkbox">Checkbox<br><input type="checkbox" id="select-all-checkbox"><label for="select-all-checkbox" style="visibility: hidden;">fd</label></th>
+
                         <th>Group</th>
                         <th>Name</th>
                         <th>Gender</th>
@@ -136,9 +142,11 @@
 
             <label>First name:</label>
             <input type="text" id="student-firstname">
+            <label for="student-firstname" style="visibility: hidden;">fd</label>
 
             <label>Last name:</label>
             <input type="text" id="student-lastname">
+            <label for="student-lastname" style="visibility: hidden;">fd</label>
 
             <label>Gender:</label>
             <select id="student-gender">
@@ -149,6 +157,7 @@
 
             <label>Birthday:</label>
             <input type="date" id="student-birthday">
+            <label for="student-birthday" style="visibility: hidden;">fd</label>
 
             <label>Status:</label>
             <select id="student-status">
@@ -168,13 +177,13 @@
         <title class="headUnd">Our Socials</title>
         <div>
             <a href="mailto:serhii.matrokhin.pz.2023@lpnu.ua" class="email">E-mail</a>
-            <br>
+            <br><br>
             <a href="tel:0963491132" class="tel"> 0963491132</a>
         </div>
         <div class="bottom-right-content">
-            <a href="https://www.instagram.com/sehiy2815" target="_blank" class="inst"><i class="fa-brands fa-instagram" alt="instagram" class="instagram"></i></a>
-            <br>
-            <a href="https://github.com/serhiy28" target="_blank" class="git"><i class="fa-brands fa-github" alt="social"
+            <a href="https://www.instagram.com/sehiy2815" target="_blank" class="inst" aria-label = "..."><i class="fa-brands fa-instagram" alt="instagram" class="instagram"></i></a>
+            <br><br>
+            <a href="https://github.com/serhiy28" target="_blank" class="git" aria-label ="..."><i class="fa-brands fa-github" alt="social"
                 class="git"></i></a>
         </div>
     </div>
