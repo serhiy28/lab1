@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function createStudentRow(student) {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td class="checkbox"><input type="checkbox" id = "select-all-checkbox${i}"><label for="select-all-checkbox${i}" style="visibility: hidden;">fd</label></td>
+            <td class="checkbox"><input type="checkbox" id="select-all-checkbox${i}"><label for="select-all-checkbox${i}" style="visibility: hidden;">fd</label></td>
             <td>${student.group}</td>
             <td>${student.firstName} ${student.lastName}</td>
             <td>${student.gender}</td>
@@ -146,12 +146,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 .filter(row => row.querySelector("input[type='checkbox']").checked);
 
             if (checkedRows.length > 0) {
-                // Оновлюємо повідомлення у модальному вікні
-                if (checkedRows.length === 1) {
-                    deleteConfirmMessage.textContent = "Are you sure you want to delete this student?";
+                // Формуємо список імен студентів
+                let studentNames = checkedRows.map(row => row.cells[2].textContent);
+
+                // Формуємо повідомлення залежно від кількості студентів
+                if (studentNames.length === 1) {
+                    deleteConfirmMessage.textContent = `Are you sure you want to delete student ${studentNames[0]}?`;
                 } else {
-                    deleteConfirmMessage.textContent = `Are you sure you want to delete ${checkedRows.length} students?`;
+                    let namesList = studentNames.join(", ");
+                    deleteConfirmMessage.textContent = `Are you sure you want to delete the following students: ${namesList}?`;
                 }
+
                 deleteConfirmModal.style.display = "flex";
             }
         }
