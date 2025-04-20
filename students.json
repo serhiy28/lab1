@@ -1,0 +1,38 @@
+[
+    {
+        "id": 2,
+        "group": "PZ-25",
+        "firstName": "Anna",
+        "lastName": "Kovalenko",
+        "gender": "Female",
+        "birthday": "2005-04-15",
+        "status": "Online"
+    },
+    {
+        "id": 3,
+        "group": "PZ-24",
+        "firstName": "Ivan",
+        "lastName": "Petrenko",
+        "gender": "Male",
+        "birthday": "2006-11-22",
+        "status": "Offline"
+    },
+    {
+        "id": 3,
+        "group": "PZ-25",
+        "firstName": "Serhiyd",
+        "lastName": "Matrol",
+        "gender": "Male",
+        "birthday": "2009-12-28",
+        "status": "Online"
+    },
+    {
+        "id": 4,
+        "group": "PZ-24",
+        "firstName": "NOna",
+        "lastName": "SAd",
+        "gender": "Female",
+        "birthday": "2009-12-28",
+        "status": "Offline"
+    }
+]

@@ -1,0 +1,1091 @@
+
+* {
+  margin: 0;
+  box-sizing: border-box; /* Додаємо box-sizing для всіх елементів */
+}
+body {
+  background-color: white;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.head1 {
+  font-size: 30px;
+  color: white;
+  background-color: grey;
+  padding: 10px;
+  display: flex; 
+  width: 100%;
+  
+  align-items: center; 
+  justify-content: space-between;
+  height: 8vh;
+}
+
+.leftText {
+  font-weight: bold;
+  color: black;
+  font-size: 20px;
+}
+
+.rightContent {
+  display: flex; 
+  align-items: center; 
+}
+
+.icon1 {
+  /* width: 30px;
+  height: 30px; */
+  font-size: 1.8rem;
+  margin-right: 10px;
+  color: rgb(62, 62, 62);
+}
+
+.bell {
+  /* width: 30px;
+  height: 30px; */
+  font-size: 1.8rem;
+  margin-right: 10px;
+  color: rgb(62, 62, 62);
+}
+.bell:hover, #notification:active {
+  animation: shakeX 0.3s linear;
+  color: greenyellow;
+  
+}
+
+
+
+@keyframes shakeX {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 60px;
+  right: 5px;
+  width: 200px;
+  height: 250px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.popup.active {
+  display: block;
+  transform: translateY(0);
+}
+
+.popup-content {
+  padding: 15px;
+  position: relative;
+}
+
+.popup-close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: gray;
+}
+
+.popup-close:hover {
+  color: black;
+}
+
+.rightText {
+  font-size: 20px;
+  color: black; 
+}
+
+
+.content {
+  width: 100%;
+}
+
+.container{
+  display: flex;
+  width: 100%;
+  height: 84vh;
+}
+
+
+.sidebar {
+  width: 200px;
+  background-color: #f8f8f8;
+  padding: 20px 0 20px 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
+
+.sidebar ul li {
+ 
+  padding: 10px 0 10px 10px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  display: block;
+}
+.sidebar ul li:hover {
+  background-color: rgb(196, 196, 196);
+
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+.rightbottom{
+  background-color: grey;
+  padding: 10px;
+  display: flex;
+  width: 100%;
+  height: 8vh;
+  align-items: center;
+  justify-content: space-between;
+}
+.headUnd{
+  font-size: 20px;
+  color: black;
+  background-color: grey;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.email, .tel{
+  color: black;
+  
+}
+.inst, .git {
+  color: black;
+ 
+}
+
+.email:hover, .tel:hover {
+  color: blue;
+}
+.inst:hover, .git:hover {
+  color: blue;
+}
+
+ .status1 {
+  /* background-color: gray; */
+  width: 10px; 
+  height: 10px;
+  border-radius: 50%; 
+  display: inline-block;
+}
+
+.status1[data-status="Online"] {
+  background-color: green;
+}
+.status1[data-status="Offline"] {
+  background-color: gray;
+}
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th{
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+td{
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+ .fa-plus {
+  margin: 10px;
+  text-align: right;
+}
+
+
+  #add-student-btn {
+    width: 15px;
+    border: 1px solid black;
+    margin-right: 0;
+    margin-left: auto;
+    display: block;
+    position: relative;
+    top: -5px;
+  }
+  
+  #add-student-btn:hover {
+    background-color: lightgray;
+  }
+  
+  #add-student-btn:active {
+    font-weight: bold;
+    background-color: #ddd;
+  }
+
+  #login-btn, #logout-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: rgb(62, 62, 62);
+    color: white;
+}
+
+#login-btn:hover, #logout-btn:hover {
+    background-color: darkgray;
+}
+
+  /* Стилі модального вікна */
+.modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  
+  
+}
+
+/* Вікно */
+.modal-content {
+  background-color: white;
+  width: 400px;
+  height: auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+
+}
+
+/* Закрити вікно */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  color: gray;
+}
+
+/* Заголовок */
+.modal-content h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: black;
+}
+
+/* Стилі для полів форми */
+.modal-content label {
+  display: block;
+  font-size: 14px;
+  margin-top: 10px;
+  color: black;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+/* Add these styles to your style.css file */
+
+/* Style for invalid input fields */
+.invalid { border: 2px solid red; background-color: #ffe6e6; }
+.valid { border: 2px solid green; background-color: #e6ffe6; }
+.error-message { color: red; font-size: 12px; margin-top: 2px; display: none; }
+.error-message[style*="block"] { display: block; }
+
+
+/* Контейнер для кнопок */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Кнопки */
+.modal-buttons button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+
+/* Стилі для кнопок у модальному вікні підтвердження */
+#cancel-delete-btn {
+background-color: white;
+color: black;
+border: 1px solid gray;
+margin-right: 10px;
+}
+
+#confirm-delete-btn {
+background-color:rgb(62, 62, 62);
+color: white;
+}
+
+/* Стилі для кнопки у модальному вікні попередження */
+#close-warning-btn {
+background-color: rgb(62, 62, 62);
+color: white;
+}
+
+/* Додаткові стилі для тексту у модальних вікнах */
+.modal-content p {
+font-size: 14px;
+margin: 15px 0; /* Збільшено відступ для довших повідомлень */
+}
+
+#cancel-btn {
+  background-color: white;
+  color: black;
+  border: 1px solid gray;
+  margin-right: 10px;
+}
+
+#create-btn {
+  background-color: rgb(62, 62, 62);
+  color: white;
+}
+
+.page-btn {
+padding: 8px 12px;
+
+border: 1px solid #e1dfdf;
+background-color: white;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.2s ease;
+ transform: scale(0.6);
+}
+
+.page-btn:hover {
+background-color: darkgray;
+}
+
+.page-btn.active {
+background-color:darkgray;
+color: black;
+font-weight: bold;
+transform: scale(0.6);
+}
+
+.page-btn:disabled {
+opacity: 0.5;
+cursor: default;
+}
+
+.student-row {
+opacity: 1;
+transition: opacity 0.3s ease-in-out;
+}
+
+.student-row.hidden {
+opacity: 0;
+}
+
+.empty-message {
+text-align: center;
+font-size: 18px;
+font-weight: bold;
+color: #777;
+display: none;
+margin-top: 20px;
+}
+
+.pagination {
+text-align: center;
+}
+
+
+
+@media (max-width: 1024px) {
+body {
+  width: 100%;
+}
+.head1, .rightbottom {
+  padding: 10px;
+}
+.bell, .icon1 {
+  font-size: 1.7rem;
+}
+.popup {
+  top: 50px;
+  right: 5px;
+  width: 180px;
+  height: 225px;
+}
+.rightContent, .bottom-right-content {
+  margin-top: 10px;
+  justify-content: center;
+}
+.content {
+  width: 100%;
+}
+.container {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* Зменшення розміру вмісту модальних вікон для підтвердження та попередження */
+#delete-confirm-modal .modal-content,
+#checkbox-warning-modal .modal-content {
+  width: 320px; /* Зменшена ширина для 1024px */
+  height: auto; /* Висота адаптується до вмісту */
+  padding: 18px; /* Трохи зменшені відступи */
+}
+
+#delete-confirm-modal .modal-content h2,
+#checkbox-warning-modal .modal-content h2 {
+  font-size: 18px; /* Зменшений заголовок */
+  margin-bottom: 12px;
+}
+
+#delete-confirm-modal .modal-content p,
+#checkbox-warning-modal .modal-content p {
+  font-size: 14px; /* Зменшений текст */
+  margin: 12px 0;
+}
+
+#delete-confirm-modal .modal-buttons button,
+#checkbox-warning-modal .modal-buttons button {
+  padding: 7px 14px; /* Зменшені кнопки */
+  font-size: 13px; /* Зменшений шрифт кнопок */
+}
+
+/* Стилі для модального вікна додавання студента */
+#add-student-modal .modal-content {
+  width: 300px;
+  height: auto;
+}
+
+#add-student-modal .modal-content h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#add-student-modal .modal-content label {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+#add-student-modal .modal-content input,
+#add-student-modal .modal-content select {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+#add-student-modal .modal-buttons {
+  margin-top: 15px;
+}
+
+#add-student-modal .modal-buttons button {
+  padding: 5px 10px;
+  font-size: 13px;
+}
+}
+
+@media (max-width: 768px) {
+
+
+.head1, .rightbottom {
+  padding: 10px;
+  width: 100%;
+}
+.leftText, .rightText, .headUnd {
+  font-size: 1.2rem;
+}
+.bell, .icon1 {
+  font-size: 1.6rem;
+}
+.popup {
+  top: 50px;
+  right: 5px;
+  width: 150px;
+  height: 200px;
+}
+.rightContent {
+  justify-content: center;
+}
+.content {
+  justify-content: center;
+}
+
+/* Зменшення розміру вмісту модальних вікон для підтвердження та попередження */
+#delete-confirm-modal .modal-content,
+#checkbox-warning-modal .modal-content {
+  width: 280px; /* Зменшена ширина для 768px */
+  height: auto; /* Висота адаптується до вмісту */
+  padding: 15px; /* Зменшені відступи */
+}
+
+#delete-confirm-modal .modal-content h2,
+#checkbox-warning-modal .modal-content h2 {
+  font-size: 16px; /* Зменшений заголовок */
+  margin-bottom: 10px;
+}
+
+#delete-confirm-modal .modal-content p,
+#checkbox-warning-modal .modal-content p {
+  font-size: 13px; /* Зменшений текст */
+  margin: 12px 0;
+}
+
+#delete-confirm-modal .modal-buttons button,
+#checkbox-warning-modal .modal-buttons button {
+  padding: 6px 12px; /* Зменшені кнопки */
+  font-size: 12px; /* Зменшений шрифт кнопок */
+}
+
+/* Стилі для модального вікна додавання студента */
+#add-student-modal .modal-content {
+  width: 300px;
+  height: auto;
+}
+
+#add-student-modal .modal-content h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#add-student-modal .modal-content label {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+#add-student-modal .modal-content input,
+#add-student-modal .modal-content select {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+#add-student-modal .modal-buttons {
+  margin-top: 15px;
+}
+
+#add-student-modal .modal-buttons button {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.container {
+  margin-left: 0;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+}
+.sidebar {
+  width: auto;
+  height: auto;
+  
+  text-align: center;
+  padding: 15px 0;
+}
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+.sidebar ul li {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 10px;
+}
+table {
+  font-size: 0.7rem;
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+  overflow-x: auto;
+}
+.add-student-btn {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+}
+@media (max-width: 480px) {
+
+/* Зменшення розміру вмісту модальних вікон */
+#delete-confirm-modal .modal-content,
+#checkbox-warning-modal .modal-content {
+    width: 220px; /* Зменшена ширина */
+    height: auto; /* Висота адаптується до вмісту */
+    padding: 15px; /* Зменшені відступи */
+}
+
+#delete-confirm-modal .modal-content h2,
+#checkbox-warning-modal .modal-content h2 {
+    font-size: 14px; /* Зменшений заголовок */
+    margin-bottom: 8px;
+}
+
+#delete-confirm-modal .modal-content p,
+#checkbox-warning-modal .modal-content p {
+    font-size: 12px; /* Зменшений текст */
+    margin: 10px 0;
+}
+
+#delete-confirm-modal .modal-buttons button,
+#checkbox-warning-modal .modal-buttons button {
+    padding: 5px 8px; /* Зменшені кнопки */
+    font-size: 11px;
+}
+
+/* Решта стилів для інших елементів */
+.head1, .rightbottom {
+    padding: 5px;
+    margin: 0;
+    width: 100%;
+}
+.rightbottom {
+    margin-bottom: 0;
+    height: 100%;
+}
+.leftText, .headUnd {
+    font-size: 1.2rem;
+}
+.bell, .icon1 {
+    font-size: 1.5rem;    
+}
+.popup {
+  top: 50px;
+  right: 5px;
+    width: 150px;
+    height: 200px;
+}
+#add-student-modal .modal-content {
+    width: 250px;
+    height: auto;
+}
+#add-student-modal .modal-content h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+#add-student-modal .modal-content label {
+    font-size: 12px;
+    margin-top: 10px;
+}
+#add-student-modal .modal-content input,
+#add-student-modal .modal-content select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 12px;
+}
+.container {
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+}
+.sidebar {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+}
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+.sidebar ul li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+table {
+    font-size: 0.7rem;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+}
+.addStudentsButton {
+    font-size: 0.7rem;
+}
+}
+
+@media (max-width: 400px) {
+/* Основні стилі для body */
+body {
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden; /* Вимикаємо горизонтальну прокрутку */
+}
+
+/* Стилі для шапки та футера */
+.head1, .rightbottom {
+  padding: 5px;
+  margin: 0;
+  width: 100%;
+  height: 8vh;
+  /* box-sizing: border-box; Включаємо padding у ширину */
+}
+.rightbottom {
+
+  margin-bottom: 0;
+}
+.leftText, .rightText, .headUnd {
+  font-size: 1.1rem;
+}
+.bell, .icon1 {
+  font-size: 1.4rem;
+}
+
+/* Стилі для спливаючих вікон */
+.popup {
+  top: 50px;
+  right: 5px;
+  width: 140px;
+  height: 180px;
+}
+
+/* Стилі для модальних вікон */
+#delete-confirm-modal .modal-content,
+#checkbox-warning-modal .modal-content {
+  width: 200px;
+  height: auto;
+  padding: 12px;
+}
+#delete-confirm-modal .modal-content h2,
+#checkbox-warning-modal .modal-content h2 {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+#delete-confirm-modal .modal-content p,
+#checkbox-warning-modal .modal-content p {
+  font-size: 11px;
+  margin: 8px 0;
+}
+#delete-confirm-modal .modal-buttons button,
+#checkbox-warning-modal .modal-buttons button {
+  padding: 4px 6px;
+  font-size: 10px;
+}
+
+/* Стилі для модального вікна додавання студента */
+#add-student-modal .modal-content {
+  width: 230px;
+  height: auto;
+  padding: 12px;
+}
+#add-student-modal .modal-content h2 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+#add-student-modal .modal-content label {
+  font-size: 11px;
+  margin-top: 8px;
+}
+#add-student-modal .modal-content input,
+#add-student-modal .modal-content select {
+  width: 100%;
+  padding: 4px;
+  margin-top: 4px;
+  font-size: 11px;
+}
+#add-student-modal .modal-buttons {
+  margin-top: 12px;
+}
+#add-student-modal .modal-buttons button {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+/* Стилі для контейнера та бокового меню */
+.container {
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+  height: 84vh; /* Дозволяємо адаптивну висоту */
+}
+.sidebar {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 10px 0 0 0;
+}
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+.sidebar ul li {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.sidebar ul li a {
+  font-size: 14px;
+}
+
+/* Стилі для основного вмісту */
+.content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 5px; /* Додаємо невеликі відступи з боків */
+}
+
+/* Стилі для таблиці */
+table {
+  font-size: 0.55rem; /* Зменшуємо шрифт для таблиці */
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+  box-sizing: border-box;
+  display: block; /* Дозволяємо таблиці адаптуватися */
+  overflow-x: auto; /* Додаємо горизонтальну прокрутку для таблиці */
+  white-space: nowrap; /* Запобігаємо перенесенню тексту */
+}
+th, td {
+  padding: 4px; /* Зменшуємо відступи в клітинках */
+  min-width: 50px; /* Встановлюємо мінімальну ширину стовпців */
+}
+
+/* Стилі для кнопки додавання студента */
+.addStudentsButton {
+  font-size: 0.65rem;
+}
+#add-student-btn {
+  width: 14px;
+}
+
+/* Стилі для пагінації */
+.page-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+  transform: scale(0.5);
+}
+
+/* Стилі для заголовка сторінки */
+.page-title {
+  font-size: 24px;
+}
+
+/* Стилі для футера */
+.rightbottom div {
+  font-size: 12px;
+}
+.email, .tel, .inst, .git {
+  font-size: 12px;
+}
+}
+
+@media (max-width: 320px) {
+/* Основні стилі для body */
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; /* Вимикаємо горизонтальну прокрутку */
+}
+
+/* Стилі для шапки та футера */
+.head1, .rightbottom {
+  padding: 4px;
+  margin: 0;
+  width: 100%;
+  height: 8vh
+  /* box-sizing: border-box; */
+}
+.rightbottom {
+  margin-bottom: 0;
+  height: 9vh;
+}
+
+.leftText, .rightText, .headUnd {
+  font-size: 0.9rem; /* Ще менший шрифт */
+}
+.bell, .icon1 {
+  font-size: 1.2rem; /* Ще менші іконки */
+}
+
+/* Стилі для спливаючих вікон */
+.popup {
+  top: 50px;
+  right: 5px;
+  width: 120px;
+  height: 160px;
+}
+.popup-content {
+  padding: 8px;
+}
+.popup-close {
+  font-size: 16px;
+}
+
+/* Стилі для модальних вікон */
+#delete-confirm-modal .modal-content,
+#checkbox-warning-modal .modal-content {
+  width: 180px;
+  height: auto;
+  padding: 8px;
+}
+#delete-confirm-modal .modal-content h2,
+#checkbox-warning-modal .modal-content h2 {
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+#delete-confirm-modal .modal-content p,
+#checkbox-warning-modal .modal-content p {
+  font-size: 9px;
+  margin: 5px 0;
+}
+#delete-confirm-modal .modal-buttons button,
+#checkbox-warning-modal .modal-buttons button {
+  padding: 2px 4px;
+  font-size: 8px;
+}
+
+/* Стилі для модального вікна додавання студента */
+#add-student-modal .modal-content {
+  width: 200px;
+  height: 400px;
+  padding: 8px;
+}
+#add-student-modal .modal-content h2 {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+#add-student-modal .modal-content label {
+  font-size: 9px;
+  margin-top: 5px;
+}
+#add-student-modal .modal-content input,
+#add-student-modal .modal-content select {
+  width: 100%;
+  padding: 2px;
+  margin-top: 2px;
+  font-size: 9px;
+}
+#add-student-modal .modal-buttons {
+  margin-top: 8px;
+}
+#add-student-modal .modal-buttons button {
+  padding: 2px 5px;
+  font-size: 9px;
+}
+
+/* Стилі для контейнера та бокового меню */
+.container {
+  width: 100vw;
+  flex-direction: column;
+  text-align: center;
+  height: 84vh;
+}
+.sidebar {
+  width: 100vw;
+  text-align: center;
+  padding: 8px 0;
+}
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+.sidebar ul li {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.sidebar ul li a {
+  font-size: 12px;
+}
+
+/* Стилі для основного вмісту */
+.content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 3px;
+}
+
+/* Стилі для таблиці */
+table {
+  font-size: 0.5rem; /* Ще менший шрифт */
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+  box-sizing: border-box;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+th, td {
+  padding: 3px; /* Ще менші відступи */
+  min-width: 40px; /* Ще менша мінімальна ширина стовпців */
+}
+
+/* Стилі для кнопки додавання студента */
+.addStudentsButton {
+  font-size: 0.5rem;
+}
+#add-student-btn {
+  width: 12px;
+}
+
+/* Стилі для пагінації */
+.page-btn {
+  padding: 4px 6px;
+  font-size: 10px;
+  transform: scale(0.4);
+}
+
+/* Стилі для заголовка сторінки */
+.page-title {
+  font-size: 20px;
+}
+
+/* Стилі для футера */
+.rightbottom div {
+  font-size: 10px;
+}
+.email, .tel, .inst, .git {
+  font-size: 10px;
+}
+
+/* Стилі для повідомлення про порожній список */
+.empty-message {
+  font-size: 14px;
+}
+}

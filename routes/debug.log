@@ -1,0 +1,214 @@
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/logout
+Segments: ["api","logout"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/logout
+Segments: ["api","logout"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/logout
+Segments: ["api","logout"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students/1
+Segments: ["api","students","1"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/logout
+Segments: ["api","logout"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/logout
+Segments: ["api","logout"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/logout
+Segments: ["api","logout"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/logout
+Segments: ["api","logout"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/logout
+Segments: ["api","logout"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]
+Request URI: /api/logout
+Segments: ["api","logout"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/login
+Segments: ["api","login"]
+Request URI: /api/user
+Segments: ["api","user"]
+Request URI: /api/students
+Segments: ["api","students"]

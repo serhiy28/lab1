@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Put your description here.">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#808080">
+    <title>Student Management</title>
+    <link href="style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+</head>
+
+<body>
+    <header class="head1">
+        <span class="leftText">CMS</span>
+        <!-- <div class="rightContent">
+            <div class="icons">
+               
+                <i class="fa-solid fa-bell bell" ></i>
+                
+                <i class="fa-solid fa-circle-user icon1"></i>
+            </div>
+            <span class="rightText">Name Surname</span>
+        </div> -->
+        <!-- У <header class="head1"> замініть rightContent -->
+<div class="rightContent">
+    <div class="icons">
+        <i class="fa-solid fa-bell bell" style="display: none;"></i>
+        <i class="fa-solid fa-circle-user icon1" style="display: none;"></i>
+    </div>
+    <span class="rightText" id="user-name" style="display: none;">Name Surname</span>
+    <button id="login-btn">LogIn</button>
+    <button id="logout-btn" style="display: none;">LogOut</button>
+</div>
+
+<!-- Додайте модальне вікно для логіну -->
+<div id="login-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">×</span>
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username (firstName.lastName):</label>
+                <input type="text" id="username" name="username" required>
+                <span class="error-message" id="username-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password (birthday YYYY-MM-DD):</label>
+                <input type="text" id="password" name="password" required>
+                <span class="error-message" id="password-error"></span>
+            </div>
+            <div class="modal-buttons">
+                <button type="button" id="cancel-login-btn">Cancel</button>
+                <button type="submit" id="submit-login-btn">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+    </header>
+
+    <div id="bell-popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <p>Notifications will appear here</p>
+        </div>
+    </div>
+    
+    <!-- Popup for icon1 -->
+    <div id="icon1-popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <p>User options will appear here</p>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <!-- Ліве бокове меню -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="/dashboard.html">Dashboard</a></li>
+                <li><a href="#" id="students-link">Students</a></li>
+                <li><a href="/tasks.html">Tasks</a></li>
+            </ul>
+        </aside>
+
+        <main class="content" id="students-table" style="display: none;">
+            <br>
+            <h1 class="page-title">Students</h1>
+            <i class="fa-solid fa-plus" id="add-student-btn"></i>
+            <!-- <p id="empty-message" class="empty-message">Список порожній</p> -->
+
+            <table>
+                <thead>
+                    <tr>
+                        
+                        <th class="checkbox">Checkbox<br><input type="checkbox" id="select-all-checkbox"><label for="select-all-checkbox" style="visibility: hidden;">fd</label></th>
+
+                        <th>Group</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Birthday</th>
+                        <th>Status</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody id="students-list">
+                    <!-- <tr>
+                        <td class="checkbox"><input type="checkbox"></td>
+                        <td>PZ-24</td>
+                        <td>Serhiy</td>
+                        <td>Non-binary</td>
+                        <td>03.08.2006</td>
+                        <td><span class="status1" data-status="Offline"></span></td>
+                 
+                        <td><i class="fa-solid fa-xmark delete-student"></i> <i class="fa-solid fa-pencil edit-student"></i></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr> -->
+                </tbody>
+            </table>
+            <div id="pagination" class="pagination">
+                <button id="prev-page" class="page-btn">&lt;</button>
+                <span id="page-numbers"></span>
+                <button id="next-page" class="page-btn">&gt;</button>
+            </div>
+            
+        </main>
+    </div>
+
+    <!-- Модальне вікно -->
+   
+    <!-- Модальне вікно для додавання/редагування студента -->
+<!-- Inside the #add-student-modal form -->
+<!-- Inside #add-student-modal -->
+<div id="add-student-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">×</span>
+        <h2 id="modal-title">Add Student</h2>
+        <form id="student-form">
+            <input type="hidden" id="student-id" name="id">
+
+            <div class="form-group">
+                <label for="student-group">Group:</label>
+                <select id="student-group" name="group" required>
+                    <option value="">Select a group</option>
+                    <option value="PZ-24">PZ-24</option>
+                    <option value="PZ-25">PZ-25</option>
+                </select>
+                <span class="error-message" id="group-error">Please select a group.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="student-firstname">First name:</label>
+                <input type="text" id="student-firstname" name="firstName" required>
+                <span class="error-message" id="firstname-error-capital" style="display: none;">First name must start with a capital letter.</span>
+    <span class="error-message" id="firstname-error-email" style="display: none;">First name cannot be an email address.</span>
+    <span class="error-message" id="firstname-error-format" style="display: none;">First name can only contain letters, spaces, hyphens, or apostrophes.</span>
+    <span class="error-message" id="firstname-error-select" style="display: none;">Your thief</span>
+</div>
+            
+            <div class="form-group">
+                <label for="student-lastname">Last name:</label>
+                <input type="text" id="student-lastname" name="lastName" required>
+                <span class="error-message" id="lastname-error-capital" style="display: none;">Last name must start with a capital letter.</span>
+    <span class="error-message" id="lastname-error-email" style="display: none;">Last name cannot be an email address.</span>
+    <span class="error-message" id="lastname-error-format" style="display: none;">Last name can only contain letters, spaces, hyphens, or apostrophes.</span>
+    <span class="error-message" id="lastname-error-select" style="display: none;">Your thief</span>
+</div>        
+    <div class="form-group">
+                <label for="student-gender">Gender:</label>
+                <select id="student-gender" name="gender" required>
+                    <option value="">Select a gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Non-binary">Non-binary</option>
+                </select>
+                <span class="error-message" id="gender-error">Please select a gender.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="student-birthday">Birthday:</label>
+           
+                <input type="date" id="student-birthday" name="birthday" required min="1945-01-01" max="2010-01-01">
+                <span class="error-message" id="birthday-error">Age must be 15-80 years.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="student-status">Status:</label>
+                <select id="student-status" name="status" required>
+                    <option value="">Select a status</option>
+                    <option value="Offline">Offline</option>
+                    <option value="Online">Online</option>
+                </select>
+                <span class="error-message" id="status-error">Please select a status.</span>
+            </div>
+
+            <div class="modal-buttons">
+                <button type="button" id="cancel-btn">Cancel</button>
+                <button type="submit" id="save-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+    
+    <footer class="rightbottom">
+        <title class="headUnd">Our Socials</title>
+        <div>
+            <a href="mailto:serhii.matrokhin.pz.2023@lpnu.ua" class="email">E-mail</a>
+            <br><br>
+            <a href="tel:0963491132" class="tel"> 0963491132</a>
+        </div>
+        <div class="bottom-right-content">
+            <a href="https://www.instagram.com/sehiy2815" target="_blank" class="inst" aria-label = "..."><i class="fa-brands fa-instagram" alt="instagram" class="instagram"></i></a>
+            <br><br>
+            <a href="https://github.com/serhiy28" target="_blank" class="git" aria-label ="..."><i class="fa-brands fa-github" alt="social"
+                class="git"></i></a>
+        </div>
+    </footer>
+
+
+   <!-- Модальне вікно для підтвердження видалення -->
+   <div id="delete-confirm-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-delete-confirm">×</span>
+        <h2>Confirm Deletion</h2>
+        <p id="delete-confirm-message">Are you sure you want to delete this student?</p>
+        <div class="modal-buttons">
+            <button id="cancel-delete-btn">Cancel</button>
+            <button id="confirm-delete-btn">Delete</button>
+        </div>
+    </div>
+</div>
+
+<!-- Модальне вікно для повідомлення про чекбокс -->
+<div id="checkbox-warning-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-checkbox-warning">×</span>
+        <h2>Warning</h2>
+        <p>Please select the student by checking the checkbox before deleting.</p>
+        <div class="modal-buttons">
+            <button id="close-warning-btn">OK</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script src="pagination.js"></script>
+    <script src="popup.js"></script>
+
+    <!-- <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script> -->
+</body>
+
+</html>
